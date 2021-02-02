@@ -4,16 +4,16 @@ public class MSL {
     public static void main(String args[]) {
 
         System.out.println("Enter List1 : ");
-        int[] list1 = nextIntArrayScanner();
+        int[] list1 = ScannerNextIntArray();
         System.out.println("Enter List2 : ");
-        int[] list2 = nextIntArrayScanner();
+        int[] list2 = ScannerNextIntArray();
 
         // printing sorted merged list
         System.out.println("The merged list is " + intArrayToString(sortIntArray(mergeIntArray(list1, list2))));
 
     }
 
-    public static int[] nextIntArrayScanner() {
+    public static int[] ScannerNextIntArray() {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine(); // Get the entire line of out put
         String[] num_split = input.split("\\s+"); // Split String by space separated

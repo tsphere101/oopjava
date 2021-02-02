@@ -5,6 +5,7 @@ public class PalindromicPrime {
 
         printPrimelindromeChart(100);
 
+
     }
 
     public static void printPrimelindromeChart(int amount)

@@ -15,7 +15,7 @@ public class MTX {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the size of the matrix : ");
-        int[][] mtx = genRandomMTX(ScannerIntegerRange(1, 500));
+        int[][] mtx = genRandomMTX(sc.nextInt());
 
         printArray(mtx);
 
@@ -190,7 +190,7 @@ public class MTX {
 
         for (int i = 0; i < size; i++) {
             for (int k = 0; k < size; k++) {
-                result[i][k] = genRandom(0, 1);
+                result[i][k] = (int) (Math.random() * (2));
             }
         }
         return result;

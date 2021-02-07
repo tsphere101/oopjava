@@ -1,3 +1,5 @@
+package lab0502;
+
 import java.lang.Math;
 public class RegularPolygon {
     private int n = 3; // The number of sides in the polygon with default value 3.

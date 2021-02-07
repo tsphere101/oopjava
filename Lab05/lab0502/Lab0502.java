@@ -1,3 +1,5 @@
+package lab0502;
+
 public class Lab0502 {
     public static void main(String[] args) {
         

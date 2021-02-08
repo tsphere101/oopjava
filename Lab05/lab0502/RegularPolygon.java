@@ -18,7 +18,15 @@ public class RegularPolygon {
         this.n = n;
     }
     public RegularPolygon(int n, double side, double x ,double y)
-    {
+    {   
+        if(n < 3)
+        {
+            n = 3;
+        }
+        if(side < 0)
+        {
+            side = Math.abs(side);
+        }
         this.n = n;
         this.side= side;
         this.x = x;
@@ -53,7 +61,16 @@ public class RegularPolygon {
     }
     public double getArea()
     {
-        return (this.n*this.side*this.side)/(4.0*Math.tan(Math.PI/(double)this.n));
+        double result = (this.n*this.side*this.side)/(4.0*Math.tan(Math.PI/(double)this.n));
+        result = Math.round(result*1000.0)/1000.0;
+        return result;
+    }
+    public void log()
+    {
+        System.out.println("Perimeter is " + getPerimeter());
+        System.out.println("Area is " + getArea());
+        System.out.println("X-Position is : " + getX() );
+        System.out.println("Y-Position is : " + getY());
     }
     
 }

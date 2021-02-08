@@ -6,6 +6,7 @@ public class Lab0501 {
     public static void main(String[] args) {
        
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter ID");
         int my_id = (int)sc.nextDouble();
         Account myAccount = new Account(my_id,20000);
         Account.setAnnualInterestRate(4.5);

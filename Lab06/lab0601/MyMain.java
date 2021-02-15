@@ -28,7 +28,7 @@ public static void main(String[] args) {
     user.setHeight(sc.nextDouble());
 
     // Print out the BMI in METRIC
-    System.out.println("Your BMI for weight " + user.getWeight() + " kg and height " + user.getHeight()*100.0 + " cm is " + user.getBMI());
+    System.out.println(user.getName()+ "'s BMI for weight " + user.getWeight() + " kg and height " + user.getHeight()*100.0 + " cm aged of " + user.getAge() + " is " + user.getBMI());
 
     // Print the interpretation
     System.out.println("You're " + user.getBmiInterpretation());

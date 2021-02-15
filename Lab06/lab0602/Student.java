@@ -16,7 +16,7 @@ public class Student {
     {
         this.name = name;
         this.id = id;
-        course_list = new MyDynamicArray<Course>(8);
+        course_list = new MyDynamicArray<Course>();
     }
     public Student() {
         this("null" , -1);
@@ -47,6 +47,14 @@ public class Student {
     public void addCourse(Course course)
     {
         this.course_list.add(course);
+        course.addStudent(this);
+    }
+    public void clearCourse()
+    {
+        for(int i = 0 ; i < course_list.getSize() ;i++)    
+        {
+            this.course_list.get(i).dropStudent(this);
+        }
     }
 
 
@@ -71,7 +79,7 @@ public class Student {
 
     public void logCourse()
     {
-        for(int i = 0 ; i < this.course_list.getSize(); i ++)
+        for(int i = 0 ; i < this.course_list.getSize(); i++)
         {
             System.out.println(this.course_list.get(i).getCourseName());
         }

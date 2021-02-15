@@ -46,6 +46,17 @@ public class Course {
         student_in_couse.drop(index);
     }
 
+    public void dropStudent(Student student)
+    {
+        for(int i = 0 ; i < student_in_couse.getSize();i++)
+        {
+            if(student_in_couse.get(i).equals(student))
+            {
+                student_in_couse.drop(i);
+            }
+        }
+    }
+
     // Remove Student by ID
     public void dropStudentById(int id) {
         for (int i = 0; i < student_in_couse.getSize(); i++) {
@@ -55,16 +66,48 @@ public class Course {
         }
     }
 
+    // Remove Student by Name
+    public void dropStudentByName(String name)
+    {
+        boolean check_if_exist = false;
+        for (int i = 0 ; i < student_in_couse.getSize(); i++) {
+            if(student_in_couse.get(i).getName().equals(name))
+            {
+                student_in_couse.drop(i);
+                check_if_exist = true;
+            }
+        }
+        if (check_if_exist == false)
+        {
+            System.out.println("There's no student named "+ name + " enrolled in " + this.getCourseName());
+        }
+    }
+
     // Remove all student in the course
     public void clear() {
-        for (int i = 0; i < student_in_couse.getSize(); i++) {
-            student_in_couse.drop();
-        }
-
+        student_in_couse.clear();
     }
 
     public void addStudent(Student student) {
         student_in_couse.add(student);
+    }
+
+
+
+    // Log
+    public void log()
+    {
+        System.out.println("Course Name::" + this.getCourseName());
+        System.out.println("Student Amount::"+ this.getStudentAmount());
+    }
+
+    public void logStudentList()
+    {
+        System.out.println("=== " + this.getCourseName() + " Student List ===");
+        for(int i = 0 ; i < student_in_couse.getSize(); i++)
+        {
+            System.out.println(student_in_couse.get(i).getName());
+        }
     }
 
 }

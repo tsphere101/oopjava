@@ -1,9 +1,8 @@
 package lab0603;
 
-
 public class MyMain {
     public static void main(String[] args) {
-        
+
         Queue myq = new Queue();
 
         addSequence(20, myq);
@@ -36,16 +35,16 @@ public class MyMain {
 
     }
 
-
-
-
-    public static void addSequence(int num, Queue q)
-    {
-        for(int i = 1 ; i <= num ; i++)
-        {
+    /**
+     * Add sequence of natural number in the Queue.
+     * 
+     * @param num last number of the natural sequence
+     * @param q   Queue array to add
+     */
+    public static void addSequence(int num, Queue q) {
+        for (int i = 1; i <= num; i++) {
             q.enqueue(i);
         }
     }
-
 
 }

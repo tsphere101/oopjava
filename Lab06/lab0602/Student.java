@@ -1,8 +1,8 @@
 package lab0602;
 
 /**
- * The class containts the student's basic management nad data, used for
- * SchoolObjectExperimenmt.
+ * The class contains the student's basic management and data. 
+ * Use with Course class.
  * 
  * @author TSphere
  */

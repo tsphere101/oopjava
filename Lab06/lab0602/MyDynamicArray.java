@@ -3,8 +3,20 @@ package lab0602;
 import java.util.Arrays;
 
 public class MyDynamicArray<T> {
-    // Fields
+    
+    /**
+     * Default initial capacity.
+     */
+    private final int DEFUALT_CAPACITY = 8;
+    
+    /**
+     * The index of the last element in the array.
+     */
     private int size;
+
+    /**
+     * Array of element.
+     */
     private Object[] data;
 
     public MyDynamicArray() {

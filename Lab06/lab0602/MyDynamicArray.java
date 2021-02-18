@@ -1,142 +1,135 @@
 package lab0602;
 
-import java.util.Arrays;
-
 public class MyDynamicArray<T> {
-    
+
     /**
      * Default initial capacity.
      */
-    private final int DEFUALT_CAPACITY = 8;
-    
+    private static final int DEFUALT_CAPACITY = 8;
+
+    /**
+     * Allocated slots.
+     */
+    private int capacity = 0;
+
     /**
      * The index of the last element in the array.
      */
-    private int size;
+    private int length;
 
     /**
      * Array of element.
      */
-    private Object[] data;
+    private T[] data;
 
     public MyDynamicArray() {
-        this(0);
+        this(DEFUALT_CAPACITY);
     }
-    public MyDynamicArray(int size) {
-        this.size = size;
-        data = new Object[size+1]; // Init Object array
+
+    public MyDynamicArray(int capacity) {
+        if (capacity < 0)
+            throw new IllegalArgumentException("Capacity can't be less that 0");
+        this.capacity = capacity;
+        data = (T[]) new Object[capacity];
     }
 
     // Get the size of array allocated
     public int getCapacity() { // return the size of memory allocate
-        return data.length;
+        return this.capacity;
     }
 
-    // Get element from the array by index
+    /**
+     * Return the specified element by index.
+     */
     public T get(int index) {
         return (T) data[index];
     }
 
-    // Add new element to the array
-    public void add(Object element) {
-        ensureCapacity(size + 1);
-        data[size] = element;
-        size++;
+    /**
+     * Append the specified element to the end of the array.
+     * @param element element to be append to the array
+     */
+    public void add(T element) {
+        this.ensureCapacity(this.length+1);
+        data[this.length] = element;
+        this.length++;
     }
 
-    // Remove element in array by index
-    public void drop(int index) {
-        if(this.data == null || index < 0 || index>=this.getSize())
-        {
-            return;
+    /**
+     * Remove the specified element in the array by index.
+     * @param rm_index index of the element in the array to be removed
+     */
+    public void drop(int rm_index) {
+        if (rm_index >= this.length || rm_index < 0)
+            throw new IndexOutOfBoundsException();
+        for (int i = rm_index; i < this.length - 1; i++) {
+            this.data[i] = data[i + 1]; /* Shifting all elements to the left by one, starting from rm_index. */
         }
-        ensureCapacity(size - 1);
-        Object[] new_data = new Object[data.length - 1];
-        for (int i = 0, k = 0; i < data.length; i++) {
-            if (i == index) {
-                continue;
-            }
-            new_data[k++] = data[i];
+        T[] new_arr = (T[]) new Object[this.length - 1];
+        for (int i = 0; i < this.length - 1; i++) {
+            new_arr[i] = this.data[i];
         }
-        this.data = new_data;
-        this.size--;
-    }
-    // Overloading drop() method
-    public void drop()
-    {
-        drop(this.getSize()-1);
+        this.length = this.length - 1;
+        this.capacity = this.length;
     }
 
-    // Get amount of elements in the array
-    public int getSize() { // return the amount of the elements
-        int i;
-        for(i = 0 ; i < this.size && data[i] != null ; i++)
-        {
-        }
-        return i;
+    /**
+     * Remove the last element of the array.
+     */
+    public void drop() {
+        drop(this.getSize() - 1);
     }
-    
-    // Remove All elements in the array
+
+    /**
+     * Get the number of the elements in the array.
+     * @return number of the elements in the array
+     */
+    public int getSize() {
+        return this.length;
+    }
+
+    /**
+     * Remove all of the elements in the array.
+     * This array will be empty after this.
+     */
     public void clear() {
-        while(!this.isEmpty())
+        while (!this.isEmpty())
             this.drop();
     }
 
-
-    // is Empty
-    public boolean isEmpty()
-    {
-        if(this.data == null || this.getSize() == 0)
-        return true;
-        else return false;
+    /**
+     * Return if the array contains no elements.
+     * @return true if the array contains no elements.
+     */
+    public boolean isEmpty() {
+        if (this.data == null || this.getSize() == 0)
+            return true;
+        else
+            return false;
     }
 
-
-    // Dynamic Memnory Allocate :: ensureCapacity
+    /**
+     * Resize and allocate memory double size of the old array.
+     */
     public void ensureCapacity(int minCapacity) {
-        int old_capacity = getCapacity();
-        if (minCapacity >= old_capacity) {
-            int newCapacity = old_capacity * 2;
-            if (newCapacity < minCapacity) {
-                newCapacity = minCapacity;
+        /* Resize the capacity. */
+        if (this.getSize() + 1 >= this.capacity) {
+            if (this.capacity == 0) {
+                this.capacity = 1;
+            } else
+                this.capacity *= 2; /* Double the size. */
+            T[] new_arr = (T[]) new Object[this.capacity];
+            for (int i = 0; i < this.length; i++) {
+                new_arr[i] = this.data[i];
             }
-            data = Arrays.copyOf(data, newCapacity);
+            this.data = new_arr;
         }
     }
-    
 
-
-
-    // Function to remove the element
-    public static Object[] removeTheElement(Object[] arr, int index) {
-
-        // If the array is empty
-        // or the index is not in array range
-        // return the original array
-        if (arr == null || index < 0 || index >= arr.length) {
-
-            return arr;
-        }
-
-        // Create another array of size one less
-        Object[] anotherArray = new Object[arr.length - 1];
-
-        // Copy the elements except the index
-        // from original array to the other array
-        for (int i = 0, k = 0; i < arr.length; i++) {
-
-            // if the index is
-            // the removal element index
-            if (i == index) {
-                continue;
-            }
-
-            // if the index is not
-            // the removal element index
-            anotherArray[k++] = arr[i];
-        }
-
-        // return the resultant array
-        return anotherArray;
+    public void log() {
+        System.out.println("CAPACITY::" + this.getCapacity());
+        System.out.println("SIZE::" + this.getSize());
+        System.out.println("IS EMPTY::" + this.isEmpty());
     }
+
 }

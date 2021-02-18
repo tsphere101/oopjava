@@ -56,5 +56,10 @@ public class MyMain {
         discreteStructure.logStudentList();
         cal2.logStudentList();
 
+
+        MyDynamicArray<Integer> wow = new MyDynamicArray<Integer>(24);
+        wow.add(17);
+        wow.clear();
+        wow.log();
     }
 }

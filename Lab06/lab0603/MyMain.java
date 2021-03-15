@@ -15,7 +15,6 @@ public class MyMain {
         System.out.println("The size is : " + myq.getSize());
         System.out.println("The index is : " + myq.getIndex());
 
-        addSequence(500, myq);
         myq.showElements();
         System.out.println("The size is : " + myq.getSize());
         System.out.println("The index is : " + myq.getIndex());

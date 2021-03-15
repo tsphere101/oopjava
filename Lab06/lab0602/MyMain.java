@@ -18,6 +18,8 @@ public class MyMain {
         Course cal2 = new Course("Calculus II");
 
 
+
+
         // Student add course to their course_list
         A.addCourse(oop);
         A.addCourse(discreteStructure);

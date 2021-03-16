@@ -1,5 +1,6 @@
 package lab0702;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Account {
@@ -28,6 +29,11 @@ public class Account {
     String name = "";
 
     /**
+     * Array List of Transcations
+     */
+    ArrayList<Transaction> trans;
+
+    /**
      * Construct the account with initials id , starting_balance, annualInterestRate
      * @param id the id of the account
      * @param starting_balance the starting balance in the account
@@ -38,6 +44,7 @@ public class Account {
         this.balance = starting_balance;
         this.dateCreated = new Date();
         this.name = name;
+        this.trans = new ArrayList<Transaction>();
     }
 
     /**
@@ -101,6 +108,7 @@ public class Account {
     public void withdraw(double value)    
     {
         this.balance -= value;
+        this.trans.add(new Transaction('W', value, this.balance));
     }
 
     /**
@@ -109,6 +117,7 @@ public class Account {
     public void deposite(double value)
     {
         this.balance+= value;
+        this.trans.add(new Transaction('D', value, this.balance));
     }
 
     /**
@@ -126,6 +135,13 @@ public class Account {
     public static void setAnnualInterestRate(double value)
     {
         Account.annualInterestRate=value;
+    }
+
+    public void printTransaction() {
+        for(int i = 0 ; i< this.trans.size(); i++)
+        {
+            this.trans.get(i).printTranscation();
+        }
     }
 
 }

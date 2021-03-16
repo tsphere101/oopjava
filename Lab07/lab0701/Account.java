@@ -2,11 +2,14 @@ package lab0701;
 
 import java.util.Date;
 
+import lab0702.Transaction;
+
+import java.util.ArrayList;
+
 public class Account {
 
-
     /**
-     *  Account id
+     * Account id
      */
     int id;
 
@@ -27,13 +30,15 @@ public class Account {
 
     String name = "";
 
+    ArrayList<Transaction> trans;
+
     /**
      * Construct the account with initials id , starting_balance, annualInterestRate
-     * @param id the id of the account
+     * 
+     * @param id               the id of the account
      * @param starting_balance the starting balance in the account
      */
-    public Account(int id,double starting_balance,String name)
-    {
+    public Account(int id, double starting_balance, String name) {
         this.id = id;
         this.balance = starting_balance;
         this.dateCreated = new Date();
@@ -42,90 +47,87 @@ public class Account {
 
     /**
      * Create the account with specified id.
+     * 
      * @param id the id specified for the account.
      */
-    public Account(int id)
-    {
-        this(id,0,"");
+    public Account(int id) {
+        this(id, 0, "");
     }
 
     /**
      * Create the account with specified name and id.
+     * 
      * @param name The account name
-     * @param id the id of the account
+     * @param id   the id of the account
      */
-    public Account(String name, int id)
-    {
-        this(id,0,name);
+    public Account(String name, int id) {
+        this(id, 0, name);
     }
-
-
 
     /**
      * Create the account without specified argument.
      */
-    public Account()
-    {
-        this(0,0,"");
+    public Account() {
+        this(0, 0, "");
     }
 
-    public void log()
-    {
+    public void log() {
         System.out.println("AccountID :: " + this.id);
         System.out.println("AccountBalace :: " + this.balance);
-        System.out.println("AnnualInterestRate :: "+ annualInterestRate);
-        System.out.println("AccountCreatedDate :: " + this.dateCreated);        
+        System.out.println("AnnualInterestRate :: " + annualInterestRate);
+        System.out.println("AccountCreatedDate :: " + this.dateCreated);
 
     }
 
     /**
      * Get the balance in the account.
      */
-    public double getBalance()
-    {
+    public double getBalance() {
         return this.balance;
     }
 
     /**
      * Print the account balance.
      */
-    public void printBalance()
-    {
-        System.out.println("Balance is " +this.balance);
+    public void printBalance() {
+        System.out.println("Balance is " + this.balance);
 
     }
 
     /**
      * Withdraw balance from the account.
      */
-    public void withdraw(double value)    
-    {
+    public void withdraw(double value) {
         this.balance -= value;
     }
 
     /**
      * Deposite money to account.
      */
-    public void deposite(double value)
-    {
-        this.balance+= value;
+    public void deposite(double value) {
+        this.balance += value;
     }
 
     /**
      * Print date created.
      */
-    public void printDateCreated()
-    {
-        System.out.println("This account was created at "+ this.dateCreated);
+    public void printDateCreated() {
+        System.out.println("This account was created at " + this.dateCreated);
+    }
+
+    /**
+     * return Transaction ArrayList
+     */
+    public ArrayList<Transaction> getTransaction() {
+        return this.trans;
     }
 
     /**
      * Set Annual Interest Rate
      * 
      */
-    public static void setAnnualInterestRate(double value)
-    {
-        Account.annualInterestRate=value;
+    public static void setAnnualInterestRate(double value) {
+        Account.annualInterestRate = value;
     }
 
 }

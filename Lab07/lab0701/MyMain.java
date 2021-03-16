@@ -11,10 +11,10 @@ public class MyMain {
         SavingsAccount savings_account = new SavingsAccount();
         CheckingAccount checking_account = new CheckingAccount();
 
-        savings_account.deposite(10000);
+        savings_account.deposite(5000);
         Account.setAnnualInterestRate(1.5);
 
-        savings_account.withdraw(5);
+        savings_account.withdraw(6000);
 
 
 
@@ -23,8 +23,6 @@ public class MyMain {
         System.out.println(savings_account.toString());
 
         System.out.println("Withdraw : "); 
-        double input = sc.nextDouble();
-        savings_account.withdraw(input);
 
         System.out.println("Balance is " + savings_account.getBalance());
         savings_account.printDateCreated();
@@ -32,7 +30,14 @@ public class MyMain {
         System.out.println("=========");
 
 
-        checking_account.withdraw(8000000);
+        System.out.println("CHECKINGS ACCOUNT");
+
+        checking_account.deposite(5000);
+        checking_account.setOverDraftLimit(1000);
+        checking_account.withdraw(7000);
+
+        System.out.println(checking_account.getBalance());
+
 
 
     }

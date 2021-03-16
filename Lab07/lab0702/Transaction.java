@@ -10,12 +10,21 @@ public class Transaction {
     private double amount;
     private double balance;
     private String description;
-    
 
-    public void transaction(char type,double amount , double balance, String description)
-    {
-        
+    public Transaction(char type, double amount, double balance) {
+        this.type = type;
+        this.amount = amount;
+        this.balance = balance;
+
+        this.date = new Date();
+
     }
 
-    
+    public void printTranscation() {
+        System.out.print(this.date + " \t");
+        System.out.print(this.type + "\t");
+        System.out.print(this.amount + "\t");
+        System.out.print(this.balance + "\n");
+    }
+
 }
